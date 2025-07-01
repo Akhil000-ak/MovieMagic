@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tickets - Movie Mania</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Movie Mania</div>
+            <ul>
+                 <li><a href="{{url_for('home')}}">Home</a></li>
+                <li><a href="{{url_for('register')}}" id="register-link">Register</a></li>
+                <li><a href="{{url_for('login')}}" id="login-link">Login</a></li>
+                <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+                <li id="logout-link" style="display: none;"><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="booking-container">
+            <div class="movie-details">
+                <h2 id="movie-title"></h2>
+                <img id="movie-image" src="" alt="Movie Poster">
+                <p><strong>Genre:</strong> <span id="movie-genre"></span></p>
+                <p><strong>Duration:</strong> <span id="movie-duration"></span></p>
+                <p><strong>Rating:</strong> <span id="movie-rating"></span></p>
+                <p><strong>Synopsis:</strong> <span id="movie-synopsis"></span></p>
+            </div>
+
+            <div class="booking-form">
+                <form id="booking-form">
+                    <h3>Book Your Tickets</h3>
+
+                    <div class="form-group">
+                        <label for="booking-date">Date</label>
+                        <input type="date" id="booking-date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-time">Time</label>
+                        <select id="booking-time" name="time" required>
+                            <option value="">Select Time</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="1:30 PM">1:30 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="7:00 PM">7:00 PM</option>
+                            <option value="10:30 PM">10:30 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="seat-selection">
+                        <div class="screen">SCREEN</div>
+                        <div class="seat-map">
+                            <!-- Seats A1-A10 -->
+                            <div class="seat">A1</div> <div class="seat">A2</div> <div class="seat">A3</div> <div class="seat">A4</div> <div class="seat">A5</div>
+                            <div class="seat">A6</div> <div class="seat">A7</div> <div class="seat">A8</div> <div class="seat">A9</div> <div class="seat">A10</div>
+                            <!-- Seats B1-B10 -->
+                            <div class="seat">B1</div> <div class="seat">B2</div> <div class="seat occupied">B3</div> <div class="seat occupied">B4</div> <div class="seat">B5</div>
+                            <div class="seat">B6</div> <div class="seat">B7</div> <div class="seat">B8</div> <div class="seat">B9</div> <div class="seat">B10</div>
+                            <!-- Seats C1-C10 -->
+                            <div class="seat">C1</div> <div class="seat">C2</div> <div class="seat">C3</div> <div class="seat">C4</div> <div class="seat">C5</div>
+                            <div class="seat">C6</div> <div class="seat">C7</div> <div class="seat">C8</div> <div class="seat">C9</div> <div class="seat">C10</div>
+                            <!-- Seats D1-D10 -->
+                            <div class="seat">D1</div> <div class="seat">D2</div> <div class="seat">D3</div> <div class="seat">D4</div> <div class="seat">D5</div>
+                            <div class="seat">D6</div> <div class="seat">D7</div> <div class="seat">D8</div> <div class="seat">D9</div> <div class="seat">D10</div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                            <div>
+                                <span style="display: inline-block; width: 15px; height: 15px; background-color: #ddd; margin-right: 5px;"></span>
+                                <span>Available</span>
+                            </div>
+                            <div>
+                                <span style="display: inline-block; width: 15px; height: 15px; background-color: #0f4c81; margin-right: 5px;"></span>
+                                <span>Selected</span>
+                            </div>
+                            <div>
+                                <span style="display: inline-block; width: 15px; height: 15px; background-color: #ff6b6b; margin-right: 5px;"></span>
+                                <span>Occupied</span>
+                            </div>
+                        </div>
+
+                        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                            <p>Selected Seats: <span id="selected-seats-count">0</span></p>
+                            <p>Total Price: $<span id="total-price">0</span></p>
+                        </div>
+                    </div>
+                    <!-- Hidden movie id input -->
+                    <input type="hidden" id="movie-id" name="movie_id" value="">
+                    <button type="submit" class="btn">Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Movie Mania. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

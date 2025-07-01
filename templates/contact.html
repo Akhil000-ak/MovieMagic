@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Movie Mania</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Movie Mania</div>
+            <ul>
+                <li><a href="{{url_for('home')}}">Home</a></li>
+                <li><a href="{{url_for('register')}}" id="register-link">Register</a></li>
+                <li><a href="{{url_for('login')}}" id="login-link">Login</a></li>
+                <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+                <li id="logout-link" style="display: none;"><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Contact Us</h1>
+
+        <div class="contact-methods">
+            <div class="contact-card">
+                <h3>Email Us</h3>
+                <p>support@moviemania.com</p>
+            </div>
+
+            <div class="contact-card">
+                <h3>Call Us</h3>
+                <p>+91 8464373223</p>
+            </div>
+
+            <div class="contact-card">
+                <h3>Visit Us</h3>
+                <p>5-110,Zinna Tower<br>Guntur,Andhra Pradesh</p>
+            </div>
+        </div>
+
+        <h2>Send Us a Message</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Movie Mania. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Movie Mania - Your Movie Booking Platform</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Movie Mania</div>
+            <ul>
+                <li><a href="{{url_for('home')}}">Home</a></li>
+                <li><a href="{{url_for('register')}}">Register</a></li>
+                <li><a href="{{url_for('login')}}">Login</a></li>
+                <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+                <li id="logout-link" style="display: none;"><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Movie Mania</h1>
+        <p>Book your favorite movies in just a few clicks</p>
+        <div>
+            <a href="{{url_for('register')}}" class="btn">Register Now</a>
+            <a href="{{url_for('login')}}" class="btn btn-secondary">Login</a>
+        </div>
+    </section>
+
+    <section class="container">
+        <div style="text-align: center; margin: 50px 0;">
+            <h2>Why Choose Movie Mania?</h2>
+            <div style="display: flex; justify-content: space-around; margin-top: 30px; flex-wrap: wrap;">
+                <div style="width: 200px; margin: 10px;">
+                    <i class="fas fa-ticket-alt" style="font-size: 40px; color: #0f4c81;"></i>
+                    <h3>Easy Booking</h3>
+                    <p>Book your tickets in just a few simple steps</p>
+                </div>
+                <div style="width: 200px; margin: 10px;">
+                    <i class="fas fa-film" style="font-size: 40px; color: #0f4c81;"></i>
+                    <h3>Wide Selection</h3>
+                    <p>All the latest movies at your fingertips</p>
+                </div>
+                <div style="width: 200px; margin: 10px;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 40px; color: #0f4c81;"></i>
+                    <h3>Multiple Locations</h3>
+                    <p>Find theaters near you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Movie Mania. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

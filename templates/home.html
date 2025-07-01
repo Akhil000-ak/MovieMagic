@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Movie Mania</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Movie Mania</div>
+            <ul>
+                <li><a href="{{url_for('home')}}">Home</a></li>
+                <li><a href="{{url_for('register')}}" id="register-link">Register</a></li>
+                <li><a href="{{url_for('login')}}" id="login-link">Login</a></li>
+                <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+                <li id="logout-link" style="display: none;"><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="search-box">
+            <form>
+                <select id="city" name="city">
+                    <option value="">Select City</option>
+                    <option value="guntur">Guntur</option>
+                    <option value="vijayawada">Vijayawada</option>
+                    <option value="tenali">Tenali</option>
+                    <option value="mangalagiri">Mangalagiri</option>
+                </select>
+                <input type="text" placeholder="Search for movies..." name="search">
+                <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
+            </form>
+        </div>
+
+        <div class="movie-section">
+            <h2>Now Showing</h2>
+            <div class="movie-grid">
+                <div class="movie-card" onclick="location.href='booking.html?movie=1'">
+                    <img src="/images/kubera.jpg" alt="Kubeera">
+                    <div class="movie-info">
+                        <h3>Kubeera</h3>
+                        <p>Action, Drama, Thriller</p>
+                        <a href="booking.html?movie=1" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card" onclick="location.href='booking.html?movie=2'">
+                    <img src="/images/kannappa.jpg" alt="Kannappa">
+                    <div class="movie-info">
+                        <h3>Kannappa</h3>
+                        <p>Action, Drama, Fantasy</p>
+                        <a href="booking.html?movie=2" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card" onclick="location.href='booking.html?movie=3'">
+                    <img src="/images/sitare.jpg" alt="Sitaare Zameen Par">
+                    <div class="movie-info">
+                        <h3>Sitaare Zameen Par</h3>
+                        <p>Comedy, Drama, Sports</p>
+                        <a href="booking.html?movie=3" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card" onclick="location.href='booking.html?movie=4'">
+                    <img src="/images/final destination.jpg" alt="Final Destination: Bloodlines">
+                    <div class="movie-info">
+                        <h3>Final Destination: Bloodlines</h3>
+                        <p>Horror, Supernatural, Thriller</p>
+                        <a href="booking.html?movie=4" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card" onclick="location.href='booking.html?movie=5'">
+                    <img src="/images/Bairavam.jpg" alt="Bairavam">
+                    <div class="movie-info">
+                        <h3>Bairavam</h3>
+                        <p>Action, Drama</p>
+                        <a href="booking.html?movie=5" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card" onclick="location.href='booking.html?movie=6'">
+                    <img src="/images/thug-life.jpg" alt="Thug-Life">
+                    <div class="movie-info">
+                        <h3>Thug-Life</h3>
+                        <p>Action, Crime, Thriller</p>
+                        <a href="booking.html?movie=6" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-section">
+            <h2>Coming Soon</h2>
+            <div class="movie-grid">
+                <div class="movie-card">
+                    <img src="/images/og.jpg" alt="They Call Him OG">
+                    <div class="movie-info">
+                        <h3>They Call Him OG</h3>
+                        <p>Action, Drama, Violence</p>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="/images/peddi.jpg" alt="Peddi">
+                    <div class="movie-info">
+                        <h3>Peddi</h3>
+                        <p>Action, Thriller</p>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="/images/RAAJA SAAB.jpg" alt="Raaja Saab">
+                    <div class="movie-info">
+                        <h3>Raaja Saab</h3>
+                        <p>Horror, Comedy</p>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Movie Mania. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

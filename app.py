@@ -7,20 +7,63 @@ import os
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'your_secret_key_here')
 
-# AWS DynamoDB setup
+# AWS Services setup
 AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
 DYNAMODB_USERS = os.environ.get('DYNAMODB_USERS', 'MovieAppUsers')
 DYNAMODB_BOOKINGS = os.environ.get('DYNAMODB_BOOKINGS', 'MovieAppBookings')
+SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN', 'arn:aws:sns:us-east-1:324037304857:Moviemagic:06001d83-4d79-449c-b031-5e0e4d978688')
 
 dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION)
 users_table = dynamodb.Table(DYNAMODB_USERS)
 bookings_table = dynamodb.Table(DYNAMODB_BOOKINGS)
+sns_client = boto3.client('sns', region_name=AWS_REGION)
 
 movies = {
     1: {"title": "Kubeera", "genre": "Action", "showtimes": ["10:00", "14:00", "18:00"]},
     2: {"title": "Kannappa", "genre": "Drama", "showtimes": ["11:00", "15:00", "19:00"]},
     3: {"title": "Final Destination", "genre": "Sci-Fi", "showtimes": ["12:00", "16:00", "20:00"]}
 }
+
+def send_booking_confirmation(username, movie_title, showtime, seats):
+    """Send booking confirmation via SNS"""
+    try:
+        # Get user's email from DynamoDB
+        user_data = users_table.get_item(Key={'username': username})
+        email = user_data['Item'].get('email', '')
+        
+        if not email:
+            print("No email found for user, cannot send notification")
+            return False
+            
+        message = f"""
+        Booking Confirmation for {username}:
+        
+        Movie: {movie_title}
+        Showtime: {showtime}
+        Seats: {seats}
+        
+        Thank you for your booking!
+        """
+        
+        # Publish to SNS topic
+        response = sns_client.publish(
+            TopicArn=SNS_TOPIC_ARN,
+            Message=message,
+            Subject=f"Booking Confirmation: {movie_title}",
+            MessageAttributes={
+                'email': {
+                    'DataType': 'String',
+                    'StringValue': email
+                }
+            }
+        )
+        
+        print(f"Notification sent to {email}, MessageId: {response['MessageId']}")
+        return True
+        
+    except ClientError as e:
+        print(f"Error sending SNS notification: {e}")
+        return False
 
 @app.route('/')
 def index():
@@ -101,6 +144,7 @@ def make_booking():
     seats = data['seats']
     if not isinstance(seats, int) or seats <= 0:
         return jsonify({'success': False, 'message': 'Invalid number of seats'}), 400
+    
     booking_data = {
         'username': session['username'],
         'movie_id': str(movie_id),
@@ -108,8 +152,19 @@ def make_booking():
         'showtime': showtime,
         'seats': seats
     }
+    
     try:
+        # Store booking in DynamoDB
         bookings_table.put_item(Item=booking_data)
+        
+        # Send SNS notification
+        send_booking_confirmation(
+            username=session['username'],
+            movie_title=movie['title'],
+            showtime=showtime,
+            seats=seats
+        )
+        
         return jsonify({'success': True})
     except ClientError as e:
         return jsonify({'success': False, 'message': str(e)}), 500

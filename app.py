@@ -5,7 +5,7 @@ from botocore.exceptions import ClientError
 import os
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'your_secret_key_here')
+app.secret_key = os.environ.get('SECRET_KEY', '11e838ef302b42e24355e84a56469e1d970189204bac2d2544cac41870f3d017')
 
 # AWS Services setup
 AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')

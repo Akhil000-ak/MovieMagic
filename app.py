@@ -5,13 +5,13 @@ from botocore.exceptions import ClientError
 import os
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', '11e838ef302b42e24355e84a56469e1d970189204bac2d2544cac41870f3d017')
+app.secret_key = os.environ.get('SECRET_KEY', '2f9b3e7d56d749cdab6f9cf672d2a937c64f0f19c4eaefc17264f2d39a5314bb')
 
 # AWS Services setup
 AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
 DYNAMODB_USERS = os.environ.get('DYNAMODB_USERS', 'MovieAppUsers')
 DYNAMODB_BOOKINGS = os.environ.get('DYNAMODB_BOOKINGS', 'MovieAppBookings')
-SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN', 'arn:aws:sns:us-east-1:324037304857:Moviemagic:06001d83-4d79-449c-b031-5e0e4d978688')
+SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN', 'arn:aws:sns:us-east-1:975050261480:moviemagic:84b8b477-464a-4b9b-891f-7aebefba6a05')
 
 dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION)
 users_table = dynamodb.Table(DYNAMODB_USERS)
